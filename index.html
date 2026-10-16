@@ -109,9 +109,25 @@ footer{text-align:center;padding:25px;color:#666}
 <input id="accountEmail" type="email" placeholder="ईमेल (वैकल्पिक)">
 <button class="primary" onclick="saveProfile()">प्रोफाइल नाम सेव करें</button>
 <p id="profileMessage"></p>
-<hr>
-<h3>🔐 लॉगिन और साइनअप</h3>
-<p>असली अकाउंट बनाने के लिए अगला चरण Firebase Authentication जोड़ना है।</p>
+  <hr>
+
+<h3>🔐 SJP Social लॉगिन और साइनअप</h3>
+
+<input id="authEmail" type="email" placeholder="अपना ईमेल लिखें">
+
+<input id="authPassword" type="password" placeholder="पासवर्ड (कम से कम 6 अक्षर)">
+
+<button class="primary" onclick="sjpSignup()">नया अकाउंट बनाएँ</button>
+
+<button class="primary" onclick="sjpLogin()">लॉगिन करें</button>
+
+<button class="primary" onclick="sjpLogout()">लॉगआउट करें</button>
+
+<p id="authMessage"></p>
+
+<input id="authEmail" type="email" placeholder="अपना ईमेल लिखें">
+<input id="authPassword" type="password" placeholder="पासवर्ड (कम से कम 6 अक्षर)"
+ ।</p>
 </div>
 </section>
 
