@@ -1,18 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SJP Social - सबको काम, सबको पहचान</title>
+
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#f3f5fa;color:#20243a}
-header{background:#302878;color:white;padding:16px;text-align:center}
+header{background:#302878;color:white;padding:18px;text-align:center}
 header h2{margin:0;font-size:26px}
 header p{margin:7px 0 0}
-nav{display:flex;justify-content:space-around;gap:8px;background:white;padding:12px;position:sticky;top:0;box-shadow:0 2px 8px #0001}
-button,.btn{border:0;border-radius:10px;padding:11px 15px;background:#f5a623;color:#20243a;font-weight:bold;cursor:pointer;text-decoration:none}
+nav{display:flex;justify-content:space-around;gap:5px;flex-wrap:wrap;background:white;padding:10px;position:sticky;top:0;box-shadow:0 2px 8px #0001}
+button{border:0;border-radius:10px;padding:11px 13px;background:#f5a623;color:#20243a;font-weight:bold;cursor:pointer}
 nav button{background:#eeeafd}
 main{max-width:650px;margin:auto;padding:14px}
 .hero{background:#302878;color:white;border-radius:18px;padding:24px 18px;text-align:center}
@@ -28,8 +28,10 @@ textarea{min-height:85px;resize:vertical}
 footer{text-align:center;padding:25px;color:#666}
 .hidden{display:none}
 .pill{display:inline-block;background:#eeeafd;padding:6px 10px;border-radius:20px;font-size:13px}
+#authMessage{overflow-wrap:anywhere}
 </style>
 </head>
+
 <body>
 <header>
 <h2>💜 SJP Social</h2>
@@ -64,7 +66,9 @@ footer{text-align:center;padding:25px;color:#666}
 <div class="card">
 <h3>📝 अपनी पोस्ट बनाएँ</h3>
 <p class="muted">अपने काम, दुकान, उत्पाद या हुनर के बारे में बताएँ।</p>
+
 <input id="postName" placeholder="आपका नाम">
+
 <select id="category">
 <option>नाई और सैलून</option>
 <option>किसान</option>
@@ -73,11 +77,14 @@ footer{text-align:center;padding:25px;color:#666}
 <option>स्ट्रीट वेंडर</option>
 <option>अन्य काम</option>
 </select>
-<textarea id="postText" placeholder="आप क्या काम करते हैं? क्या सेवा देते हैं?"></textarea>
+
+<textarea id="postText" placeholder="आप क्या काम करते हैं?"></textarea>
+
 <label for="photo">📷 फोटो चुनें (वैकल्पिक)</label>
 <input id="photo" type="file" accept="image/*">
+
 <button class="primary" onclick="addPost()">पोस्ट प्रकाशित करें</button>
-<p class="muted">डेमो: पोस्ट इसी ब्राउज़र में सेव होगी।</p>
+<p class="muted">ध्यान दें: अभी पोस्ट इसी ब्राउज़र में सेव होगी।</p>
 </div>
 </section>
 
@@ -85,49 +92,47 @@ footer{text-align:center;padding:25px;color:#666}
 <div class="card">
 <h3>💼 काम और रोजगार</h3>
 <p>अपने हुनर के अनुसार अवसर खोजें और अपनी सेवा की जानकारी साझा करें।</p>
+
 <div class="card">
 <h3>✂️ नाई और सैलून</h3>
 <p>अपनी दुकान और सेवाओं का प्रचार करें।</p>
 </div>
+
 <div class="card">
 <h3>🌾 किसान</h3>
 <p>अपने उत्पादों और खेती से जुड़ी सेवाओं की जानकारी दें।</p>
 </div>
+
 <div class="card">
 <h3>🛠️ मजदूर और कारीगर</h3>
 <p>अपने हुनर और काम के अनुभव को लोगों तक पहुँचाएँ।</p>
 </div>
+
 <button class="primary" onclick="showSection('create')">अपने काम की पोस्ट डालें</button>
 </div>
 </section>
 
 <section id="account" class="hidden">
 <div class="card">
-<h3>👤 आपका अकाउंट</h3>
-<p class="muted">यह अभी डेमो है, असली ऑनलाइन लॉगिन नहीं।</p>
+<h3>👤 आपका प्रोफाइल</h3>
 <input id="accountName" placeholder="अपना नाम">
-<input id="accountEmail" type="email" placeholder="ईमेल (वैकल्पिक)">
 <button class="primary" onclick="saveProfile()">प्रोफाइल नाम सेव करें</button>
 <p id="profileMessage"></p>
-  <hr>
+
+<hr>
 
 <h3>🔐 SJP Social लॉगिन और साइनअप</h3>
+<p class="muted">नया अकाउंट बनाने के लिए ईमेल और कम से कम 6 अक्षरों का पासवर्ड लिखें।</p>
 
-<input id="authEmail" type="email" placeholder="अपना ईमेल लिखें">
-
-<input id="authPassword" type="password" placeholder="पासवर्ड (कम से कम 6 अक्षर)">
+<input id="authEmail" type="email" placeholder="अपना ईमेल लिखें" autocomplete="email">
+<input id="authPassword" type="password" placeholder="पासवर्ड (कम से कम 6 अक्षर)" autocomplete="current-password">
 
 <button class="primary" onclick="sjpSignup()">नया अकाउंट बनाएँ</button>
-
 <button class="primary" onclick="sjpLogin()">लॉगिन करें</button>
-
 <button class="primary" onclick="sjpLogout()">लॉगआउट करें</button>
 
-<p id="authMessage"></p>
-
-<input id="authEmail" type="email" placeholder="अपना ईमेल लिखें">
-<input id="authPassword" type="password" placeholder="पासवर्ड (कम से कम 6 अक्षर)"
- ।</p>
+<p id="authMessage" role="status" aria-live="polite"></p>
+<p id="loginStatus" class="muted">अकाउंट की स्थिति जाँची जा रही है...</p>
 </div>
 </section>
 
@@ -142,86 +147,127 @@ footer{text-align:center;padding:25px;color:#666}
 
 <script>
 function showSection(id){
-document.querySelectorAll('main > section').forEach(s=>s.classList.add('hidden'));
-document.getElementById(id).classList.remove('hidden');
-window.scrollTo(0,0);
+  document.querySelectorAll('main > section').forEach(s=>s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+  window.scrollTo(0,0);
 }
+
 function getPosts(){
-try{return JSON.parse(localStorage.getItem('sjpPosts')||'[]')}catch(e){return []}
+  try{return JSON.parse(localStorage.getItem('sjpPosts')||'[]')}
+  catch(e){return []}
 }
+
 function renderPosts(){
-const feed=document.getElementById('feed');
-feed.innerHTML='<h3>📰 लोगों के काम और पोस्ट</h3>';
-const posts=getPosts();
-if(!posts.length){
-feed.innerHTML+='<div class="card"><p>अभी कोई पोस्ट नहीं है। पहली पोस्ट आप बनाएँ!</p></div>';
-return;
+  const feed=document.getElementById('feed');
+  feed.innerHTML='<h3>📰 लोगों के काम और पोस्ट</h3>';
+  const posts=getPosts();
+
+  if(!posts.length){
+    feed.innerHTML+='<div class="card"><p>अभी कोई पोस्ट नहीं है। पहली पोस्ट आप बनाएँ!</p></div>';
+    return;
+  }
+
+  posts.slice().reverse().forEach(p=>{
+    const card=document.createElement('div');
+    card.className='card post';
+
+    const name=document.createElement('div');
+    name.className='post-head';
+    name.textContent='👤 '+p.name;
+
+    const cat=document.createElement('p');
+    cat.className='muted';
+    cat.textContent=p.category;
+
+    const msg=document.createElement('p');
+    msg.textContent=p.text;
+
+    card.append(name,cat,msg);
+
+    if(p.photo){
+      const img=document.createElement('img');
+      img.src=p.photo;
+      img.alt='पोस्ट की फोटो';
+      card.appendChild(img);
+    }
+
+    feed.appendChild(card);
+  });
 }
-posts.slice().reverse().forEach(p=>{
-const card=document.createElement('div');
-card.className='card post';
-const name=document.createElement('div');
-name.className='post-head';
-name.textContent='👤 '+p.name;
-const cat=document.createElement('p');
-cat.className='muted';
-cat.textContent=p.category;
-const msg=document.createElement('p');
-msg.textContent=p.text;
-card.append(name,cat,msg);
-if(p.photo){
-const img=document.createElement('img');
-img.src=p.photo;
-img.alt='पोस्ट की फोटो';
-card.appendChild(img);
-}
-feed.appendChild(card);
-});
-}
+
 function addPost(){
-const name=document.getElementById('postName').value.trim();
-const category=document.getElementById('category').value;
-const text=document.getElementById('postText').value.trim();
-const file=document.getElementById('photo').files[0];
-if(!name||!text){alert('कृपया अपना नाम और पोस्ट लिखें।');return;}
-if(file && file.size>1500000){alert('कृपया 1.5 MB से छोटी फोटो चुनें।');return;}
-const save=(photo='')=>{
-try{
-const posts=getPosts();
-posts.push({name,category,text,photo});
-localStorage.setItem('sjpPosts',JSON.stringify(posts));
-document.getElementById('postName').value='';
-document.getElementById('postText').value='';
-document.getElementById('photo').value='';
-renderPosts();
-showSection('home');
-alert('आपकी पोस्ट इस ब्राउज़र में सेव हो गई!');
-}catch(e){alert('जगह कम है। छोटी फोटो चुनें या बिना फोटो पोस्ट करें।');}
-};
-if(file){
-const reader=new FileReader();
-reader.onload=()=>save(reader.result);
-reader.onerror=()=>alert('फोटो पढ़ी नहीं जा सकी।');
-reader.readAsDataURL(file);
-}else{save();}
+  const name=document.getElementById('postName').value.trim();
+  const category=document.getElementById('category').value;
+  const text=document.getElementById('postText').value.trim();
+  const file=document.getElementById('photo').files[0];
+
+  if(!name||!text){
+    alert('कृपया अपना नाम और पोस्ट लिखें।');
+    return;
+  }
+
+  if(file && file.size>1500000){
+    alert('कृपया 1.5 MB से छोटी फोटो चुनें।');
+    return;
+  }
+
+  const save=(photo='')=>{
+    try{
+      const posts=getPosts();
+      posts.push({name,category,text,photo});
+      localStorage.setItem('sjpPosts',JSON.stringify(posts));
+
+      document.getElementById('postName').value='';
+      document.getElementById('postText').value='';
+      document.getElementById('photo').value='';
+
+      renderPosts();
+      showSection('home');
+      alert('आपकी पोस्ट इस ब्राउज़र में सेव हो गई!');
+    }catch(e){
+      alert('पोस्ट सेव नहीं हुई। छोटी फोटो चुनें या बिना फोटो पोस्ट करें।');
+    }
+  };
+
+  if(file){
+    const reader=new FileReader();
+    reader.onload=()=>save(reader.result);
+    reader.onerror=()=>alert('फोटो पढ़ी नहीं जा सकी।');
+    reader.readAsDataURL(file);
+  }else{
+    save();
+  }
 }
+
 function saveProfile(){
-const name=document.getElementById('accountName').value.trim();
-if(!name){alert('पहले अपना नाम लिखें।');return;}
-try{
-localStorage.setItem('sjpProfileName',name);
-document.getElementById('profileMessage').textContent='नमस्ते, '+name+'! नाम इस ब्राउज़र में सेव हो गया।';
-}catch(e){alert('नाम सेव नहीं हो पाया।');}
+  const name=document.getElementById('accountName').value.trim();
+
+  if(!name){
+    alert('पहले अपना नाम लिखें।');
+    return;
+  }
+
+  try{
+    localStorage.setItem('sjpProfileName',name);
+    document.getElementById('profileMessage').textContent=
+      'नमस्ते, '+name+'! नाम इस ब्राउज़र में सेव हो गया।';
+  }catch(e){
+    alert('नाम सेव नहीं हो पाया।');
+  }
 }
+
 try{
-const savedName=localStorage.getItem('sjpProfileName');
-if(savedName)document.getElementById('accountName').value=savedName;
+  const savedName=localStorage.getItem('sjpProfileName');
+  if(savedName)document.getElementById('accountName').value=savedName;
 }catch(e){}
+
 renderPosts();
 </script>
-</body>
-</html><script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+<script type="module">
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -243,11 +289,91 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-window.sjpAuth = {
-  auth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged
+const message = document.getElementById('authMessage');
+const status = document.getElementById('loginStatus');
+
+function showAuthMessage(text){
+  message.textContent=text;
+}
+
+function getEmailAndPassword(){
+  const email=document.getElementById('authEmail').value.trim();
+  const password=document.getElementById('authPassword').value;
+
+  if(!email){
+    showAuthMessage('कृपया अपना ईमेल लिखें।');
+    return null;
+  }
+
+  if(password.length<6){
+    showAuthMessage('पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।');
+    return null;
+  }
+
+  return {email,password};
+}
+
+window.sjpSignup=async function(){
+  const data=getEmailAndPassword();
+  if(!data)return;
+
+  showAuthMessage('अकाउंट बनाया जा रहा है...');
+
+  try{
+    await createUserWithEmailAndPassword(auth,data.email,data.password);
+    showAuthMessage('आपका अकाउंट बन गया! SJP Social में आपका स्वागत है।');
+  }catch(error){
+    showAuthMessage('अकाउंट नहीं बना: '+friendlyError(error.code));
+  }
 };
+
+window.sjpLogin=async function(){
+  const data=getEmailAndPassword();
+  if(!data)return;
+
+  showAuthMessage('लॉगिन हो रहा है...');
+
+  try{
+    await signInWithEmailAndPassword(auth,data.email,data.password);
+    showAuthMessage('लॉगिन सफल हुआ!');
+  }catch(error){
+    showAuthMessage('लॉगिन नहीं हुआ: '+friendlyError(error.code));
+  }
+};
+
+window.sjpLogout=async function(){
+  try{
+    await signOut(auth);
+    showAuthMessage('आप लॉगआउट हो गए हैं।');
+  }catch(error){
+    showAuthMessage('लॉगआउट नहीं हुआ: '+friendlyError(error.code));
+  }
+};
+
+function friendlyError(code){
+  const errors={
+    'auth/email-already-in-use':'इस ईमेल से अकाउंट पहले से बना हुआ है। लॉगिन करें।',
+    'auth/invalid-email':'ईमेल का पता सही नहीं लग रहा।',
+    'auth/weak-password':'थोड़ा मजबूत पासवर्ड रखें।',
+    'auth/invalid-credential':'ईमेल या पासवर्ड गलत है।',
+    'auth/user-not-found':'इस ईमेल का अकाउंट नहीं मिला। पहले अकाउंट बनाएँ।',
+    'auth/wrong-password':'पासवर्ड सही नहीं है।',
+    'auth/too-many-requests':'बहुत बार कोशिश हुई। कुछ देर बाद फिर प्रयास करें।',
+    'auth/network-request-failed':'इंटरनेट कनेक्शन जाँचें।',
+    'auth/operation-not-allowed':'Firebase में Email/Password लॉगिन चालू करना होगा।'
+  };
+
+  return errors[code] || ('त्रुटि: '+code);
+}
+
+onAuthStateChanged(auth,user=>{
+  if(user){
+    status.textContent='लॉगिन है: '+user.email;
+  }else{
+    status.textContent='अभी कोई अकाउंट लॉगिन नहीं है।';
+  }
+});
 </script>
+
+</body>
+</html>
